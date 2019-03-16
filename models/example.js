@@ -1,12 +1,10 @@
-const mongoose = require("mongoose");
-const Schema = mongoose.Schema;
+module.exports = function(sequelize, DataTypes) {
+  var Example = sequelize.define('Example', {
+    title: { type: DataTypes.STRING, allowNull: false },
+    description: { type: DataTypes.STRING, allowNull: false },
+    date: { type: DataTypes.DATE, defaultValue: DataTypes.NOW }
+  })
 
-const exampleSchema = new Schema({
-  title: { type: String, required: true },
-  description: { type: String, required: true },
-  date: { type: Date, default: Date.now }
-});
+  return Example;
+}
 
-const Example = mongoose.model("Example", exampleSchema);
-
-module.exports = Example;

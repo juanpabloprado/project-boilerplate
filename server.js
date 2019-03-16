@@ -1,8 +1,10 @@
 require('dotenv').config();
 const express = require("express");
-const mongoose = require("mongoose");
 
-const PORT = process.env.PORT;
+// Setting up port and requiring models for syncing
+const PORT = process.env.PORT || 8080;
+const db = require("./models");
+
 const app = express();
 
 const routes = require("./routes");
@@ -16,9 +18,9 @@ if (process.env.NODE_ENV === "production") {
 
 app.use(routes);
 
-// Connect to the Mongo DB
-mongoose.connect(process.env.MONGODB_URI);
-
-app.listen(PORT, () => {
-  console.log(`🌎 ==> API server now on port ${PORT}!`);
+// Syncing our database and logging a message to the user upon success
+db.sequelize.sync().then(function() {
+  app.listen(PORT, () => {
+    console.log(`🌎 ==> API server now on port ${PORT}!`);
+  });
 });
