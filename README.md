@@ -28,7 +28,7 @@
 
 * `client`: Source folder for React, this part of the application handles all of the UI.
 * `controllers`: Source folder for the controllers of our Mongoose models, controls CRUD operations.
-* `models`: Source folder for all of our Mongoose models.
+* `models`: Source folder for all of our Sequelize models.
 * `routes`: Source folder for all the API routes for our application.
 * `scripts`: Source folder for admin related scripts.
 * `server.js`: API server file.
@@ -37,7 +37,7 @@
 
 This project is following the MERN stack:
 
-* [Mongo](https://www.mongodb.com/): Fast and easy NoSQL database.
+* [Sequelize](http://docs.sequelizejs.com/): Promise based Node.js ORM.
 * [Express](https://expressjs.com/): Fast, unopinionated, minimalist web framework for Node.
 * [React](https://reactjs.org/): Javascript library for building user interfaces based on JSX.
 * [Node](https://nodejs.org/en/): Javascript runtime.
