@@ -1,12 +1,7 @@
-const mongoose = require("mongoose");
+var Sequelize = require('sequelize');
 const faker = require('faker');
 const db = require("../models");
 
-// This file empties the Example collection and inserts some test documents below
-mongoose.connect(
-  process.env.MONGODB_URI || 
-  "mongodb://localhost/finalclassproject"
-);
 
 const SEED_AMOUNT = 50;
 let exampleSeed = [];
@@ -19,11 +14,12 @@ for(let i = 0; i < SEED_AMOUNT; i++) {
   });
 }
 
-db.Example
-  .remove({})
-  .then(() => db.Example.collection.insertMany(exampleSeed))
+db.Example.sync({ force: true })
+.then(() => Sequelize.Promise.map(exampleSeed, example => 
+    {return db.Example.create(example)}
+    ))
   .then(data => {
-    console.log(data.result.n + " records inserted!");
+    console.log(data.length + " records inserted!");
     process.exit(0);
   })
   .catch(err => {

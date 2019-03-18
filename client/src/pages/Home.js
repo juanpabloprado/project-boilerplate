@@ -32,8 +32,8 @@ class Home extends Component {
 
     const listElements = examples.map((element) => {
       return (
-        <li key={element._id}>
-          <Link to={`/example/${element._id}`}>
+        <li key={element.id}>
+          <Link to={`/example/${element.id}`}>
             <p>
               {element.title}
             </p>
